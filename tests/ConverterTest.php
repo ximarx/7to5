@@ -109,6 +109,26 @@ class ConverterTest extends TestCase
     }
 
     /** @test */
+    public function it_can_replace_array_sort_syntax()
+    {
+        $converter = new Converter($this->getStub('it-can-replace-array-short-syntax/php54.php'));
+
+        $php5code = $converter->getPhp5Code();
+
+        $this->assertSame($this->getStubContent('it-can-replace-array-short-syntax/php53.php'), $php5code);
+    }
+
+    /** @test */
+    public function it_can_replace_class_shortcut()
+    {
+        $converter = new Converter($this->getStub('it-can-replace-class-shortcut/php54.php'));
+
+        $php5code = $converter->getPhp5Code();
+
+        $this->assertSame($this->getStubContent('it-can-replace-class-shortcut/php53.php'), $php5code);
+    }
+
+    /** @test */
     public function it_will_throw_an_exception_if_the_source_file_does_not_exist()
     {
         $this->setExpectedException(InvalidParameter::class);

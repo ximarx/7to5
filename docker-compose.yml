@@ -1,0 +1,15 @@
+version: '3.3'
+
+services:
+  test:
+    image: composer
+    volumes:
+      - ./:/app:cached
+      - ./composer-cache:/root/.composer/cache
+    working_dir: /app
+    entrypoint: bash
+    command: |-
+      -c "
+      composer install
+      composer test
+      "
